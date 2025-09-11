@@ -1,25 +1,42 @@
 import requests
-from dateutil import parser
+from bs4 import BeautifulSoup
+import json
 
 def fetch_greenhouse(company_slug: str):
-    """
-    Fetch job postings from Greenhouse using their public JSON endpoint.
-    Example: https://boards.greenhouse.io/<company>.json
-    """
-    url = f"https://boards.greenhouse.io/{company_slug}.json"
-    r = requests.get(url, timeout=30)
-    r.raise_for_status()
-    data = r.json()
+    url = f"https://boards.greenhouse.io/{company_slug}"
+    try:
+        r = requests.get(url, timeout=30)
+        r.raise_for_status()
+    except Exception:
+        return []
 
+    soup = BeautifulSoup(r.text, "html.parser")
+    scripts = soup.find_all("script", type="application/ld+json")
     jobs = []
-    for jd in data.get("jobs", []):
-        jobs.append({
-            "id": f"gh-{jd.get('id')}",
-            "company": (jd.get("company") or {}).get("name") or company_slug,
-            "title": jd.get("title"),
-            "location": (jd.get("location") or {}).get("name"),
-            "source": "greenhouse",
-            "url": jd.get("absolute_url"),
-            "posted_at": parser.parse(jd.get("updated_at")).isoformat() if jd.get("updated_at") else None,
-        })
+
+    for script in scripts:
+        try:
+            if not script.string:
+                continue
+            data = json.loads(script.string)
+            postings = data if isinstance(data, list) else [data]
+            for jd in postings:
+                if jd.get("@type") == "JobPosting":
+                    jobs.append({
+                        "id": f"gh-{jd.get('identifier', {}).get('value')}",
+                        "company": company_slug,
+                        "title": jd.get("title"),
+                        "location": (
+                            jd.get("jobLocation", [{}])[0]
+                              .get("address", {})
+                              .get("addressLocality")
+                        ),
+                        "source": "greenhouse",
+                        "url": jd.get("hiringOrganization", {}).get("sameAs") or url,
+                        "posted_at": jd.get("datePosted"),
+                    })
+        except Exception:
+            continue
+
     return jobs
+

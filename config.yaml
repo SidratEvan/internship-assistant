@@ -1,0 +1,16 @@
+user:
+  name: "Your Name"
+  email: "your.email@example.com"
+  linkedin: "https://www.linkedin.com/in/your-profile"
+  projects:
+    - name: "Budget Tracker"
+      description: "built a full-stack app to help students track expenses efficiently."
+    - name: "InterviewMood"
+      description: "developed an AI-driven tool that analyzes sentiment and improves interview readiness."
+
+companies:
+  - ramp
+  - vercel
+  - stripe
+  - discord
+  - openai

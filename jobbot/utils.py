@@ -1,6 +1,7 @@
 from datetime import datetime
 import pandas as pd
 from typing import List, Dict, Any
+import yaml
 
 TRACKER_COLUMNS = [
     "id","company","title","location","source","url","posted_at",
@@ -33,3 +34,10 @@ def upsert_tracker(path: str, rows: List[Dict[str, Any]]):
         df = pd.concat([df, pd.DataFrame(new)], ignore_index=True)
         df.to_csv(path, index=False)
     return df
+    
+def load_user_config(path="config.yaml"):
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            return yaml.safe_load(f)
+    except FileNotFoundError:
+        return {}
