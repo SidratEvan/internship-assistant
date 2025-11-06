@@ -72,8 +72,9 @@ Deploy online (Streamlit Cloud / HuggingFace Spaces) for anyone to use
 Author
 
 Sk Sidratul Islam Priyo
-📧 lcz982@usask.ca
-⭐ If you find this useful, give the repo a star!
+lcz982@usask.ca
+If you find this useful, give the repo a star!
+
 
 
 
