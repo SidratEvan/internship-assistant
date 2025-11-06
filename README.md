@@ -1,34 +1,34 @@
 ﻿# Internship Assistant
 
 An open-source CLI tool to help CS students streamline job and internship applications responsibly.
-# 🚀 Internship Assistant Webapp
+# Internship Assistant Webapp
 
 A **Streamlit-powered web application** that helps students search for internships, track applications, and generate personalized cover letters.  
 Built with **Python, Streamlit, and ATS integrations (Ashby + Greenhouse)**.
 
 ---
 
-## ✨ Features
+## Features
 
-- 🔎 **Multi-ATS job search**  
+- **Multi-ATS job search**  
   Searches internships across companies using **Ashby** and **Greenhouse** job boards.
 
-- 🎯 **Smart filters**  
+-  **Smart filters**  
   Filter results by keywords (e.g., `"intern, software"`) and location (e.g., `"remote, Canada"`).
 
-- 📊 **Application tracker**  
+-  **Application tracker**  
   Saves all searched jobs into a CSV tracker for progress monitoring.
 
-- 📄 **Cover letter generator**  
+-  **Cover letter generator**  
   Generates tailored cover letters in **Markdown + PDF** from Jinja2 templates.
 
-- 🌐 **Streamlit webapp**  
+-  **Streamlit webapp**  
   Clean user interface with sidebar controls and interactive tables.
 
 ---
 
 
-## 📦 Installation
+##  Installation
 
 Clone the repository and set up a virtual environment:
 
@@ -61,11 +61,11 @@ internship-assistant/
 
 Future Improvements
 
-🌍 Expand to more ATS providers (Lever, Workday, etc.)
+Expand to more ATS providers (Lever, Workday, etc.)
 
-🎨 Add filtering in the UI (only internships, only remote)
+Add filtering in the UI (only internships, only remote)
 
-☁️ Deploy online (Streamlit Cloud / HuggingFace Spaces) for anyone to use
+Deploy online (Streamlit Cloud / HuggingFace Spaces) for anyone to use
 
 🖥 One-click cover letter generation directly from results table
 
@@ -74,5 +74,6 @@ Author
 Sk Sidratul Islam Priyo
 📧 lcz982@usask.ca
 ⭐ If you find this useful, give the repo a star!
+
 
 
